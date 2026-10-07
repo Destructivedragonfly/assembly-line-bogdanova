@@ -118,13 +118,13 @@
 
 - *План выполнен* - исходные параметры в `params.h`;`
 
-- *Дедлок инспектора* - `BUFFER_CAP` 1, `ASM_TIME` 100, `PROB_DEFECT` 0 -> products 0/5, inspector N stuck;
+- *Дедлок инспектора* - `BUFFER_CAP` 1, `ASM_TIME` 100, `PROB_DEFECT` 0 -> inspector N stuck, не все детали сделались;
 - *Всё списано* - `PROB_DEFECT` 1.0, `PROB_REDO` 0.0 -> products 0/5, scrapped = все;
 - *error: events full* - `MAX_EVENTS` 20 при `PLAN`=5, `EXTRA`=5, `TYPES`=3;
 - *error: robot queue full* - `MAX_QUEUE` 5, `NUM_ROBOTS` 1, `ROBOT_TRAVEL` 10;
-- *error: machine N queue full* - `MAX_QUEUE` 5, `NUM_MACHINES` 1, `NUM_PART_TYPES` 1, `PLAN` 20;
-- *error: inspector N queue full* - `MAX_QUEUE` 5, `NUM_INSPECTORS` 1, `CONTROL_TIME` 20;
-- *error: too many parts* - `MAX_PARTS` 50, `PLAN` 10, `EXTRA` 10, `TYPES` 3.
+- *error: machine N queue full* - `MAX_QUEUE` 3;
+- *error: inspector N queue full* - `MAX_QUEUE` 5, `NUM_INSPECTORS` 1, `CONTROL_TIME` 20, `NUM_ROBOTS` 6, `NUM_MACHINES` 9, `machine_type[NUM_MACHINES]` {0, 0, 0, 1, 1, 1, 2, 2, 2};
+- *error: too many parts* - `MAX_PARTS` 50, `PLAN` 10, `EXTRA` 10.
 
 Пример выполнения плана:
 
