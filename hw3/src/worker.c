@@ -35,7 +35,7 @@ static int do_job(Link *link, long remaining_ms, volatile sig_atomic_t *interrup
 
 void worker_run(Link *link, int worker_id, volatile sig_atomic_t *interrupted)
 {
-    while (true) {
+    for (;;) {
         long duration_ms = 0;
         int result = link_wait_job(link, worker_id, 100, &duration_ms);
 
