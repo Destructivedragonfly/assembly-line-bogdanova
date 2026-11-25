@@ -1,0 +1,64 @@
+#include <string.h>
+
+#include "queue.h"
+
+
+/* Сделать очередь пустой */
+void queue_init(IntQueue *q)
+{
+    q->head = 0;
+    q->tail = 0;
+}
+
+/* Сколько элементов в очереди */
+int queue_size(const IntQueue *q)
+{
+    return q->tail - q->head;
+}
+
+/* Пуста ли очередь */
+int queue_empty(const IntQueue *q)
+{
+    return q->head >= q->tail;
+}
+
+/* Добавить элемент в конец, 0 - очередь полна */
+int queue_push(IntQueue *q, int val)
+{
+    if (q->tail >= MAX_QUEUE) {
+        /* место в конце кончилось: сдвигаем элементы к началу массива */
+        if (q->head == 0) {
+            return 0;
+        }
+
+        int n = q->tail - q->head;
+        memmove(&q->data[0], &q->data[q->head], (size_t)n * sizeof(int));
+        q->head = 0;
+        q->tail = n;
+    }
+
+    q->data[q->tail++] = val;
+    return 1;
+}
+
+/* Посмотреть первый элемент, не удаляя его */
+int queue_peek(const IntQueue *q, int *val)
+{
+    if (queue_empty(q)) {
+        return 0;
+    }
+
+    *val = q->data[q->head];
+    return 1;
+}
+
+/* Достать первый элемент из очереди */
+int queue_pop(IntQueue *q, int *val)
+{
+    if (queue_empty(q)) {
+        return 0;
+    }
+
+    *val = q->data[q->head++];
+    return 1;
+}
